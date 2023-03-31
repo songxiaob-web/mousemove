@@ -1,0 +1,77 @@
+@media screen and (min-width: 800px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 799px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 599px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+:root {
+  padding: 0;
+  margin: 0;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.font1 {
+  font-size: 1rem;
+}
+
+.font1-2 {
+  font-size: 1.5rem;
+}
+.font1-5 {
+  font-size: 1.5rem;
+}
+
+.font2 {
+  font-size: 2rem;
+}
+
+.font2-5 {
+  font-size: 2.5rem;
+}
+
+.margint1 {
+  margin-top: 1rem;
+}
+
+.margint2 {
+  margin-top: 2rem;
+}
+.margint3 {
+  margin-top: 3rem;
+}
+
+.bgcolor-white {
+  background: #ffffff;
+}
+
+.border1 {
+  border-radius: 1rem;
+}
+
+.padding2 {
+  box-sizing: border-box;
+  padding: 2rem;
+}
+
+.color {
+  color: #339f5e;
+}
+
+.borderbox {
+  box-sizing: border-box;
+}
