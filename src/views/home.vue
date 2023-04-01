@@ -201,7 +201,7 @@ export default {
       this.phoneimgBeignWidththis = this.phoneWidth = this.$refs.phoneImg.$el.clientWidth;
       this.pixied = this.phoneWidth / this.phoneHeight;
     }
-    img.src = "/images/9.png";
+    img.src = "./images/9.png";
     window.onresize = () => {
       this.screenWidth = document.body.clientWidth;
     }
@@ -240,7 +240,7 @@ export default {
   <div class="common-layout">
     <el-container>
       <el-container>
-        <el-image style="width: 100%; height: auto" src="/images/2.jpg" fit="contain"></el-image>
+        <el-image style="width: 100%; height: auto" src="./images/2.jpg" fit="contain"></el-image>
         <el-header>
           <el-menu :default-active="activeCurrent" class="el-menu-demo" mode="horizontal" background-color="#339f5e"
             text-color="#fff" active-text-color="#ffd04b" @select="handleSelect">
@@ -270,12 +270,12 @@ export default {
                 <el-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7" class="company-img">
                   <el-row align="middle" :gutter="20" justify="center">
                     <el-col class="cd-img-logo" :span="12">
-                      <el-image src="/images/5.png" alt="" class="logo" />
+                      <el-image src="./images/5.png" alt="" class="logo" />
                       <div class="logo-name">Android / ios</div>
                       <div class="logo-up">APP已上线</div>
                     </el-col>
                     <el-col class="cd-img-phone" :span="12">
-                      <el-image src="/images/3.png" alt="" class="phone" />
+                      <el-image src="./images/3.png" alt="" class="phone" />
                     </el-col>
                   </el-row>
                 </el-col>
@@ -338,7 +338,7 @@ export default {
                       </div>
                     </el-col>
                     <el-col :span="7" :offset="2">
-                      <el-image src="/images/7.jpg" alt="" class="" />
+                      <el-image src="./images/7.jpg" alt="" class="" />
                     </el-col>
                   </el-row>
                 </el-col>
@@ -355,7 +355,7 @@ export default {
                       </div>
                     </el-col>
                     <el-col :span="11" :offset="1">
-                      <el-image src="/images/8.png" class="ke-img-right" />
+                      <el-image src="./images/8.png" class="ke-img-right" />
                     </el-col>
                   </el-row>
                 </el-col>
@@ -366,7 +366,7 @@ export default {
               <el-col class="content-title">8门心理学</el-col>
               <el-col :span="24" class="align-center font1-5 margint3 n_phone-box">
                 <el-col class="n_phone">
-                  <el-image src="/images/9.png" class="phone-width n_phone-img" ref="phoneImg"
+                  <el-image src="./images/9.png" class="phone-width n_phone-img" ref="phoneImg"
                     :style="`width:${phoneWidth}px;height:${phoneHeight}`"/>
 
 
@@ -452,7 +452,7 @@ export default {
                   零钱。
                 </el-col>
                 <el-col :span="6" :offset="2">
-                  <el-image src="/images/7.jpg" alt="" class="" fit="cover" />
+                  <el-image src="./images/7.jpg" alt="" class="" fit="cover" />
                 </el-col>
               </el-row>
             </el-col>
@@ -478,7 +478,7 @@ export default {
                   加入51心理学，可获得600颗心理胶囊，学习8门心理学，免费学习心理咨询师课程，并且还有实体书上下册、抄写笔本包邮免费送。有机会领取事业合伙学习卡人奖学金
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7" class="card-img-box">
-                  <el-image src="/images/10.png" alt="" class="border1 card-img-box-img" fit="cover" />
+                  <el-image src="./images/10.png" alt="" class="border1 card-img-box-img" fit="cover" />
                 </el-col>
               </el-row>
               <el-col class="card-btn">立即购买学习卡 >>></el-col>
@@ -490,7 +490,7 @@ export default {
           <el-col class="footer">
             <el-col :xs="10" :sm="14" :md="9" :lg="9" :xl="9" class="footer-left">
               <el-col :xs="8" :sm="8" :md="10" :lg="10" :xl="10">
-                <el-image src="/images/logo.png" class="footer-logo"></el-image>
+                <el-image src="./images/logo.png" class="footer-logo"></el-image>
               </el-col>
 
               <el-col class="footer-text" :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
@@ -503,11 +503,11 @@ export default {
 
             <el-col :xs="12" :sm="6" :md="6" :lg="4" :xl="4" class="footer-img-box">
               <el-col :xs="6" :sm="9" :md="9" :lg="11" :xl="10" :offset="1" class="align-center footer-code">
-                <el-image src="/images/4.jpg" class=""></el-image>
+                <el-image src="./images/4.jpg" class=""></el-image>
                 <div>Android</div>
               </el-col>
               <el-col :xs="6" :sm="9" :md="9" :lg="11" :xl="10" :offset="2" class="align-center footer-code">
-                <el-image src="/images/4.jpg" class=""></el-image>
+                <el-image src="./images/4.jpg" class=""></el-image>
                 <div>ios</div>
               </el-col>
             </el-col>

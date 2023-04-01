@@ -4,6 +4,8 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [vue()],
+  base:'./',
+  assetsPublicPath:'./',
   resolve: {
     'alias': {
       '@': resolve(__dirname, 'src'), // 别名
