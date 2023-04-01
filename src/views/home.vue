@@ -15,31 +15,31 @@ export default {
       titleList: [
         {
           title: '关于51心理学',
-          id: '1'
+          id: 'c1'
         },
         {
           title: '600颗心理胶囊',
-          id: '2'
+          id: 'c2'
         },
         {
           title: '8门心理学课程',
-          id: '3'
+          id: 'c3'
         },
         {
           title: '学员见证',
-          id: '4'
+          id: 'c4'
         },
         {
           title: '事业合伙人奖金',
-          id: '5',
+          id: 'c5',
         },
         {
           title: '考证课程',
-          id: '6'
+          id: 'c6'
         },
         {
           title: '加入我们',
-          id: '7',
+          id: 'c7',
         }
       ],
 
@@ -165,6 +165,10 @@ export default {
       phoneWidth: 400,
       screenWidth: 0,
       lesPhoneHeight: 120,
+      selectItemCurrent: 1,
+      sItemPicList:[
+
+      ],
       lessonList: [
         'https://51nst-video-2.yunfeng365.com/51xxl/index/course/jichu.jpg',
         'https://51nst-video-2.yunfeng365.com/51xxl/index/course/shehui.jpg',
@@ -184,40 +188,48 @@ export default {
   },
 
   methods: {
-    handleSelect(a, b) {
-      console.log(a, b)
+    handleSelect(id) {
+      document.getElementById(id).scrollIntoView()
     }
   },
 
   mounted() {
     let img = new Image();
-    img.onload = () => {
+    img.onload = (e) => {
+      console.log('e',e)
       this.phoneHeight = this.$refs.phoneImg.$el.clientHeight;
       this.phoneimgBeignWidththis = this.phoneWidth = this.$refs.phoneImg.$el.clientWidth;
       this.pixied = this.phoneWidth / this.phoneHeight;
     }
-    img.src = "../../public/images/9.png";
+    img.src = "/images/9.png";
     window.onresize = () => {
       this.screenWidth = document.body.clientWidth;
     }
   },
 
   watch: {
-    screenWidth(newV, oldV) {
-      if (newV <= 500) {
-        this.phoneWidth = 280;
-        this.phoneHeight = 280 / this.pixied;
-      } else {
-        this.phoneWidth = this.phoneimgBeignWidththis;
-        this.phoneHeight = this.phoneimgBeignWidththis / this.pixied;
-      }
+    screenWidth: {
+      handler(newV, oldV) {
+        if (newV <= 500) {
+          this.phoneWidth = 300;
+          this.phoneHeight = 300 / this.pixied;
+        } else if (newV <= 380) {
+          this.phoneWidth = 260;
+          this.phoneHeight = 260 / this.pixied;
+        } else {
+          this.phoneWidth = this.phoneimgBeignWidththis;
+          this.phoneHeight = this.phoneimgBeignWidththis / this.pixied;
+        }
 
-      if (newV < 600) {
-        this.lesPhoneHeight = 150
-      } else {
-        this.lesPhoneHeight = 120
-      }
+        if (newV < 600) {
+          this.lesPhoneHeight = 150
+        } else {
+          this.lesPhoneHeight = 120
+        }
+      },
+      immediate: true
     }
+
   }
 }
 
@@ -228,21 +240,21 @@ export default {
   <div class="common-layout">
     <el-container>
       <el-container>
-        <el-image style="width: 100%; height: auto" src="../../public/images/2.jpg" fit="contain"></el-image>
+        <el-image style="width: 100%; height: auto" src="/images/2.jpg" fit="contain"></el-image>
         <el-header>
           <el-menu :default-active="activeCurrent" class="el-menu-demo" mode="horizontal" background-color="#339f5e"
             text-color="#fff" active-text-color="#ffd04b" @select="handleSelect">
             <template v-for="item in titleList" :key="item.id">
-              <el-menu-item :index="item.id">
+              <el-menu-item :index="item.id" :data-id="item.id">
                 {{ item.title }}
               </el-menu-item>
-            </template> <el-menu-item index="4">Orders</el-menu-item> -->
+            </template>
           </el-menu>
         </el-header>
 
         <el-main class="main-container">
           <el-col :xs="22" :sm="22" :md="20" :lg="20" :xl="20">
-            <el-col>
+            <el-col id="c1">
               <el-col class="content-title">51心理学是谁</el-col>
               <el-row :gutter="20" justify="space-between" align="middle" class="content-nav">
                 <el-col :xs="24" :sm="24" :md="15" :lg="15" :xl="15">
@@ -258,12 +270,12 @@ export default {
                 <el-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7" class="company-img">
                   <el-row align="middle" :gutter="20" justify="center">
                     <el-col class="cd-img-logo" :span="12">
-                      <el-image src="../../public/images/5.png" alt="" class="logo" />
+                      <el-image src="/images/5.png" alt="" class="logo" />
                       <div class="logo-name">Android / ios</div>
                       <div class="logo-up">APP已上线</div>
                     </el-col>
                     <el-col class="cd-img-phone" :span="12">
-                      <el-image src="../../public/images/3.png" alt="" class="phone" />
+                      <el-image src="/images/3.png" alt="" class="phone" />
                     </el-col>
                   </el-row>
                 </el-col>
@@ -294,7 +306,7 @@ export default {
             </el-col>
 
 
-            <el-col>
+            <el-col id="c2">
               <el-col class="content-title">600颗心理胶囊</el-col>
               <el-col class="align-center font1-5 margint3">{{ knowledgeList['title'] }}</el-col>
               <el-col>
@@ -326,7 +338,7 @@ export default {
                       </div>
                     </el-col>
                     <el-col :span="7" :offset="2">
-                      <el-image src="../../public/images/7.jpg" alt="" class="" />
+                      <el-image src="/images/7.jpg" alt="" class="" />
                     </el-col>
                   </el-row>
                 </el-col>
@@ -343,38 +355,54 @@ export default {
                       </div>
                     </el-col>
                     <el-col :span="11" :offset="1">
-                      <el-image src="../../public/images/8.png" class="ke-img-right" />
+                      <el-image src="/images/8.png" class="ke-img-right" />
                     </el-col>
                   </el-row>
                 </el-col>
               </el-row>
             </el-col>
 
-            <el-col>
+            <el-col id="c3">
               <el-col class="content-title">8门心理学</el-col>
               <el-col :span="24" class="align-center font1-5 margint3 n_phone-box">
                 <el-col class="n_phone">
-                  <el-image src="../../public/images/9.png" class="phone-width n_phone-img" ref="phoneImg"
-                    :style="`width:${phoneWidth}px;height:${phoneHeight}`" />
+                  <el-image src="/images/9.png" class="phone-width n_phone-img" ref="phoneImg"
+                    :style="`width:${phoneWidth}px;height:${phoneHeight}`"/>
+
+
                   <div class="n_phone-container phone-width"
-                    :style="`width:${phoneWidth}px;height:${phoneHeight * 0.46}px`">
+                    :style="`width:${phoneWidth}px;height:${phoneHeight}px`">
+
+
                     <div class="n_phone-select">
                       <template v-for="( item, index ) in ['介绍', '目录', '测试']">
-                        <div>{{ item }}</div>
+                        <div :class="['n_phone-dis-item', selectItemCurrent == index ? 'dis-item' : '']">{{ item }}</div>
                       </template>
                     </div>
-                    <div class="n_phone-quick-select">
-                      <el-row>
-                        <div class="n_phone-quick-select-1 color">快速选课</div>
-                        <div class="n_phone-quick-select-2">共67讲</div>
-                      </el-row>
 
+                    <template v-show="selectItemCurrent == 0">
                       <div class="n_phone-quick-select-3">
-                        <template v-for="( item, index ) in 67" class="">
+                        <template v-for="( item, index ) in sItemPicList" class="">
                           <div :class="['n_phone-quick-select-item', item === 1 ? 'psl' : '']">{{ item }}</div>
                         </template>
                       </div>
-                    </div>
+                    </template>
+
+                    <template v-show="selectItemCurrent == 1">
+                      <div class="n_phone-quick-select">
+                        <el-row>
+                          <div class="n_phone-quick-select-1 color">快速选课</div>
+                          <div class="n_phone-quick-select-2">共67讲</div>
+                        </el-row>
+
+                        <div class="n_phone-quick-select-3">
+                          <template v-for="( item, index ) in 67" class="">
+                            <div :class="['n_phone-quick-select-item', item === 1 ? 'psl' : '']">{{ item }}</div>
+                          </template>
+                        </div>
+                      </div>
+                    </template>
+
 
                     <div class="n_phone-titles">
                       <div class="color title">课程目录</div>
@@ -400,7 +428,7 @@ export default {
               </el-col>
             </el-col>
 
-            <el-col>
+            <el-col id="c4">
               <el-col class="content-title">学员见证</el-col>
               <el-col>
                 <el-row :gutter="0" align="middle" class="content-nav">
@@ -415,7 +443,7 @@ export default {
               </el-col>
             </el-col>
 
-            <el-col>
+            <el-col id="c5">
               <el-col class="content-title">事业合伙人奖学金</el-col>
               <el-row align="middle" justify="space-between" class="bgcolor-white padding2 borderbox margint2">
                 <el-col :span="16" class="partner-text">
@@ -424,12 +452,12 @@ export default {
                   零钱。
                 </el-col>
                 <el-col :span="6" :offset="2">
-                  <el-image src="../../public/images/7.jpg" alt="" class="" fit="cover" />
+                  <el-image src="/images/7.jpg" alt="" class="" fit="cover" />
                 </el-col>
               </el-row>
             </el-col>
 
-            <el-col>
+            <el-col id="c6">
               <el-col class="content-title">国家心理咨询师考证课程</el-col>
               <el-row align="middle" justify="space-between" class="margint2">
                 <template v-for="( item, index ) in lessonList" class="">
@@ -443,20 +471,48 @@ export default {
               <el-col :span="24" class="les-btn">心理咨询师课程免费学习</el-col>
             </el-col>
 
-            <el-col>
+            <el-col id="c7">
               <el-col class="content-title">如何成为学员</el-col>
               <el-row align="middle" justify="space-between" class="margint2">
                 <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16" class="card-text">
                   加入51心理学，可获得600颗心理胶囊，学习8门心理学，免费学习心理咨询师课程，并且还有实体书上下册、抄写笔本包邮免费送。有机会领取事业合伙学习卡人奖学金
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7" class="card-img-box">
-                  <el-image src="../../public/images/10.png" alt="" class="border1 card-img-box-img" fit="cover" />
+                  <el-image src="/images/10.png" alt="" class="border1 card-img-box-img" fit="cover" />
                 </el-col>
               </el-row>
+              <el-col class="card-btn">立即购买学习卡 >>></el-col>
             </el-col>
           </el-col>
         </el-main>
 
+        <el-footer id="c8">
+          <el-col class="footer">
+            <el-col :xs="10" :sm="14" :md="9" :lg="9" :xl="9" class="footer-left">
+              <el-col :xs="8" :sm="8" :md="10" :lg="10" :xl="10">
+                <el-image src="/images/logo.png" class="footer-logo"></el-image>
+              </el-col>
+
+              <el-col class="footer-text" :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <div>联系我们:0354-3060680</div>
+                <div>版权所有:纽斯特文化科技有限公司</div>
+                <div>扫描二维码下载并使用51心理学APP</div>
+              </el-col>
+            </el-col>
+
+
+            <el-col :xs="12" :sm="6" :md="6" :lg="4" :xl="4" class="footer-img-box">
+              <el-col :xs="6" :sm="9" :md="9" :lg="11" :xl="10" :offset="1" class="align-center footer-code">
+                <el-image src="/images/4.jpg" class=""></el-image>
+                <div>Android</div>
+              </el-col>
+              <el-col :xs="6" :sm="9" :md="9" :lg="11" :xl="10" :offset="2" class="align-center footer-code">
+                <el-image src="/images/4.jpg" class=""></el-image>
+                <div>ios</div>
+              </el-col>
+            </el-col>
+          </el-col>
+        </el-footer>
       </el-container>
     </el-container>
   </div>
@@ -474,6 +530,23 @@ export default {
   }
 }
 
+@media screen and (min-width: 300px) and (max-width: 600px) {
+  .footer {
+    justify-content: space-between !important;
+    padding: 1rem 0 !important;
+
+    .footer-left {
+      align-items: flex-start !important;
+      flex-direction: column;
+    }
+
+    .footer-text {
+      border: none !important;
+      padding: 0 !important;
+    }
+  }
+}
+
 @media screen and (min-width: 300px) and (max-width: 599px) {
   .n_phone-titles-content {
     height: 154px;
@@ -482,7 +555,9 @@ export default {
 
 
 
-.el-header {
+.el-header,
+.el-main,
+.el-footer {
   padding: 0;
 }
 
@@ -495,243 +570,295 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.content-title {
-  position: relative;
-  color: #000;
-  font-size: 2.5rem;
-  display: inline-block;
-  margin-top: 2rem;
 
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 3px;
-    height: 5px;
-    background: #339f5e;
-  }
-}
+  .content-title {
+    position: relative;
+    color: #000;
+    font-size: 2.3rem;
+    display: inline-block;
+    margin-top: 2rem;
 
-.content-nav {
-  margin-top: 3rem;
-
-  .logo-up,
-  .logo-name {
-    text-align: center;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 3px;
+      height: 5px;
+      background: #339f5e;
+    }
   }
 
-  .content-indr-text {
-    font-size: 1.8rem;
-    text-indent: 3.6rem;
+  .content-nav {
+    margin-top: 3rem;
+
+    .logo-up,
+    .logo-name {
+      text-align: center;
+    }
+
+    .content-indr-text {
+      font-size: 1.8rem;
+      text-indent: 3.6rem;
+    }
   }
-}
 
-.cd-img-phone {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 240px;
-}
-
-.cd-img-logo {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 120px;
-}
-
-
-.team-name {
-  margin: 0.8rem 0 0.4rem
-}
-
-.know-swiper-img {
-  width: 90%;
-  margin: 0 auto;
-  display: block;
-  border-radius: 1rem;
-  line-height: 2.2rem;
-}
-
-.know-text {
-  text-indent: 2rem;
-}
-
-.know-indr-content {
-  height: 100%;
-
-  .ke-content-left {
-    display: flex;
+  .cd-img-phone {
+    display: flex !important;
     flex-direction: column;
+    justify-content: center;
+    max-width: 240px;
+  }
+
+  .cd-img-logo {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 120px;
+  }
+
+
+  .team-name {
+    margin: 0.8rem 0 0.4rem
+  }
+
+  .know-swiper-img {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 1rem;
+    line-height: 2.2rem;
+  }
+
+  .know-text {
+    text-indent: 2rem;
+  }
+
+  .know-indr-content {
     height: 100%;
 
-    .kec-title-left {
-      flex: 1;
+    .ke-content-left {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
       height: 100%;
-      text-indent: 2rem;
+
+      .kec-title-left {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-indent: 2rem;
+      }
     }
+  }
+
+  .kec-title-left-column {
+    flex-direction: column;
+  }
+
+  .kec-title-left-btn {
+    position: relative;
+    background-color: #339f5e;
+    padding: 5px 1.5rem;
+    font-size: 1rem;
+    align-self: self-end;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 1rem;
+    text-align: center;
+    text-indent: 0;
+  }
+
+  .n_phone-box {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem 0;
+    box-sizing: border-box;
+
+    .n_phone {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1rem;
+
+      .phone-width {
+        width: 420px;
+      }
+
+      .n_phone-img {
+        height: auto;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 0 13px 0 rgb(23 95 51 / 60%);
+      }
+
+      .n_phone-container {
+        position: absolute;
+        left: 50%;
+        top: 53%;
+        transform: translate(-50%, 0);
+        background: #fff;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+
+      .n_phone-select {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 1.3rem;
+        padding: 1.4rem 0;
+        box-sizing: border-box;
+      }
+
+      .n_phone-quick-select {
+        width: 100%;
+
+        .n_phone-quick-select-2 {
+          margin-left: 5px;
+          color: #7c7c7c;
+        }
+
+        .n_phone-quick-select-3 {
+          white-space: nowrap;
+          overflow-y: scroll;
+          margin: 1rem 0;
+        }
+
+        .n_phone-quick-select-item {
+          display: inline-flex;
+          width: 3rem;
+          height: 3rem;
+          background: #ccc;
+          margin: 5px;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .psl {
+          background: #d8f1e3;
+        }
+      }
+
+      .n_phone-titles {
+        text-align: left;
+
+        .title {
+          margin-bottom: 1rem
+        }
+
+        .n_phone-titles-content {
+          overflow-y: scroll;
+        }
+
+        .n_phone-select-item {
+          font-size: 1rem;
+          padding: 1rem 0;
+          font-weight: 700;
+          border-bottom: 1px solid #ccc;
+        }
+      }
+    }
+
+    .marriage-text {
+      text-indent: 2rem;
+      padding: 0 2rem;
+      text-align: justify;
+      font-size: 1.3rem;
+      margin: 0 auto;
+    }
+  }
+
+  .swear-img {
+    width: 100%;
+    height: auto;
+  }
+
+
+  .partner-text {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+
+  .lesson-img-box {
+    margin: 1rem 0;
+  }
+
+  .les-btn {
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    text-align: center;
+    color: #339f5e;
+  }
+
+  .card-img-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-text {
+    font-size: 2rem;
+    color: #339f5e;
+    text-indent: 4rem;
+    font-weight: 700;
+    text-align: justify;
+  }
+
+  .card-btn {
+    border: 2px solid #339f5e;
+    padding: 1.2rem;
+    color: #339f5e;
+    text-align: center;
+    border-radius: 8px;
+    margin: 2rem 0;
+    font-size: 1.2rem;
   }
 }
 
-.kec-title-left-column {
-  flex-direction: column;
-}
 
-.kec-title-left-btn {
-  position: relative;
-  background-color: #339f5e;
-  padding: 5px 1.5rem;
-  font-size: 1rem;
-  align-self: self-end;
-  color: #fff;
-  border-radius: 5px;
-  margin-top: 1rem;
-  text-align: center;
-  text-indent: 0;
-}
 
-.n_phone-box {
-  background: #fff;
+.footer {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  padding: 2rem 0;
-  box-sizing: border-box;
+  align-items: center;
+  background: #339f5e;
+  color: #fff;
+  padding: 3rem 0;
 
-  .n_phone {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 1rem;
-
-    .phone-width {
-      width: 420px;
-    }
-
-    .n_phone-img {
-      height: auto;
-      object-fit: contain;
-      border-radius: 10px;
-      box-shadow: 0 0 13px 0 rgb(23 95 51 / 60%);
-    }
-
-    .n_phone-container {
-      position: absolute;
-      left: 50%;
-      top: 53%;
-      transform: translate(-50%, 0);
-      background: #fff;
-      padding: 0 1rem;
-      box-sizing: border-box;
-    }
-
-    .n_phone-select {
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      font-size: 1.3rem;
-      padding: 1.4rem 0;
-      box-sizing: border-box;
-    }
-
-    .n_phone-quick-select {
-      width: 100%;
-
-      .n_phone-quick-select-2 {
-        margin-left: 5px;
-        color: #7c7c7c;
-      }
-
-      .n_phone-quick-select-3 {
-        white-space: nowrap;
-        overflow-y: scroll;
-        margin: 1rem 0;
-      }
-
-      .n_phone-quick-select-item {
-        display: inline-flex;
-        width: 3rem;
-        height: 3rem;
-        background: #ccc;
-        margin: 5px;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .psl {
-        background: #d8f1e3;
-      }
-    }
-
-    .n_phone-titles {
-      text-align: left;
-
-      .title {
-        margin-bottom: 1rem
-      }
-
-      .n_phone-titles-content {
-        overflow-y: scroll;
-      }
-
-      .n_phone-select-item {
-        font-size: 1rem;
-        padding: 1rem 0;
-        font-weight: 700;
-        border-bottom: 1px solid #ccc;
-      }
-    }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
   }
 
-  .marriage-text {
-    text-indent: 2rem;
-    padding: 0 2rem;
-    text-align: justify;
-    font-size: 1.3rem;
-    margin: 0 auto;
+  .footer-text {
+    font-size: 1rem;
+    white-space: nowrap;
+    padding: 2rem 0 2rem 1rem;
+    border-left: 2px solid #4ff29b;
   }
-}
 
-.swear-img {
-  width: 100%;
-  height: auto;
-}
+  .footer-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 1rem;
+  }
 
+  .footer-logo {
+    -webkit-text-stroke: 0 0 2px #ffffff;
+  }
 
-.partner-text {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-}
-
-.lesson-img-box {
-  margin: 1rem 0;
-}
-
-.les-btn {
-  padding: 1rem;
-  background: #fff;
-  border-radius: 8px;
-  text-align: center;
-  color: #339f5e;
-}
-
-.card-img-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card-text {
-  font-size: 2rem;
-  color: #339f5e;
-  text-indent: 4rem;
-  font-weight: 700;
-  text-align: justify;
+  .footer-code {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
 }
 </style>
